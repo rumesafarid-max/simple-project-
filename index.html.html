@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ramzan Tasbeeh & Duas</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(to right,#0f2027,#203a43,#2c5364);
+color:white;
+font-family:'Segoe UI',sans-serif;
+}
+
+.counter-box{
+background:rgba(255,255,255,0.1);
+padding:35px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+width:500px;
+text-align:center;
+}
+
+.count{
+font-size:50px;
+font-weight:bold;
+margin:20px 0;
+color:gold;
+}
+
+.btn-custom{
+width:120px;
+height:120px;
+border-radius:50%;
+font-size:18px;
+transition:0.3s;
+}
+
+.btn-custom:active{
+transform:scale(0.9);
+}
+
+.dua-box{
+margin-top:20px;
+padding:15px;
+background:rgba(0,0,0,0.3);
+border-radius:15px;
+font-size:18px;
+}
+
+.arabic{
+font-size:22px;
+direction:rtl;
+margin-bottom:10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="counter-box">
+
+<h3>🌙 Ramzan Tasbeeh & Duas</h3>
+
+<select id="zikr" class="form-select mt-3" onchange="changeDua()">
+<option value="subhan">SubhanAllah</option>
+<option value="alhamdulillah">Alhamdulillah</option>
+<option value="allahuakbar">Allahu Akbar</option>
+<option value="astaghfar">Astaghfirullah</option>
+<option value="darood">Darood Shareef</option>
+<option value="ashra1">1st Ashra Dua (Rehmat)</option>
+<option value="ashra2">2nd Ashra Dua (Maghfirat)</option>
+<option value="ashra3">3rd Ashra Dua (Nijat)</option>
+</select>
+
+<div class="count" id="count">0</div>
+
+<button class="btn btn-warning btn-custom" onclick="increment()">Count</button>
+
+<br><br>
+
+<button class="btn btn-danger" onclick="reset()">Reset</button>
+
+<div class="dua-box mt-4">
+<div class="arabic" id="arabicDua"></div>
+<div id="translation"></div>
+</div>
+
+</div>
+
+<script>
+
+let counter = 0;
+
+const duas = {
+
+subhan: {
+arabic:"سُبْحَانَ ٱللَّٰهِ",
+translation:"Glory be to Allah"
+},
+
+alhamdulillah:{
+arabic:"ٱلْحَمْدُ لِلَّٰهِ",
+translation:"All praise is due to Allah"
+},
+
+allahuakbar:{
+arabic:"ٱللَّٰهُ أَكْبَرُ",
+translation:"Allah is the Greatest"
+},
+
+astaghfar:{
+arabic:"أَسْتَغْفِرُ ٱللَّٰهَ",
+translation:"I seek forgiveness from Allah"
+},
+
+darood:{
+arabic:"اللّهُمّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+translation:"O Allah, send blessings upon Muhammad (PBUH) and his family"
+},
+
+ashra1:{
+arabic:"رَبِّ اغْفِرْ وَارْحَمْ وَأَنْتَ خَيْرُ الرَّاحِمِينَ",
+translation:"O my Lord forgive and have mercy and You are the Best of the Merciful"
+},
+
+ashra2:{
+arabic:"أَسْتَغْفِرُ ٱللَّٰهَ رَبِّي مِن كُلِّ ذَنبٍ وَأَتُوبُ إِلَيْهِ",
+translation:"I seek forgiveness from Allah, my Lord, from every sin and turn to Him"
+},
+
+ashra3:{
+arabic:"اللّهُمَّ أَجِرْنِي مِنَ النَّارِ",
+translation:"O Allah save me from the fire"
+}
+
+};
+
+function increment(){
+counter++;
+document.getElementById("count").innerHTML = counter;
+}
+
+function reset(){
+counter = 0;
+document.getElementById("count").innerHTML = counter;
+}
+
+function changeDua(){
+
+reset();
+
+let selected = document.getElementById("zikr").value;
+
+document.getElementById("arabicDua").innerHTML = duas[selected].arabic;
+
+document.getElementById("translation").innerHTML = duas[selected].translation;
+
+}
+
+/* Load first dua on start */
+changeDua();
+
+</script>
+
+</body>
+</html>
